@@ -23,7 +23,7 @@ class User
         try {
             $conn = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
 
-            $sql_select = "select userName, password from user where password = '$this->password'";
+            $sql_select = "select userName, password from user where password = '$this->password' and userName = '$this->name'";
 
             if($conn->query($sql_select)->fetchColumn()){
                 return "loggeado!";
@@ -35,6 +35,5 @@ class User
         } catch (PDOException $exception) {
             return "Connection error: " . $exception->getMessage();
         }
-
     }
 }
