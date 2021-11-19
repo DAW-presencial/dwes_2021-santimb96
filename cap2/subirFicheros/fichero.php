@@ -10,6 +10,7 @@
 if (isset($_POST['submit'])) {
 
     $contador_errores = 0;
+    $arr_errores = [];
 
     $directorio = 'fichero/';
 
@@ -20,6 +21,7 @@ if (isset($_POST['submit'])) {
                 move_uploaded_file($_FILES['file' . $i]['tmp_name'], $directorio . $_FILES['file' . $i]['name']);
             } else {
                 ++$contador_errores;
+                $arr_errores[] = $_FILES['file' . $i]['error'];
             }
 
         }
@@ -32,9 +34,9 @@ if (isset($_POST['submit'])) {
         echo "Se han subido y movido los ficheros con éxito!";
     } else {
         echo "Se han producido " . $contador_errores . " errores";
+        var_dump($arr_errores);
     }
 } else {
-
     echo "Hay algún tipo de error con el SUBMIT";
 }
 ?>
