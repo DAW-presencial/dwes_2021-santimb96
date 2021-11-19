@@ -9,26 +9,33 @@
 
 if (isset($_POST['submit'])) {
 
-    if ($_FILES['file0']['error'] === UPLOAD_ERR_OK && $_FILES['file1']['error'] === UPLOAD_ERR_OK) {
+    $contador_errores = 0;
 
-        var_dump($_FILES);
+    $directorio = 'fichero/';
 
-        $directorio = 'fichero/';
+    try {
+        for ($i = 0; $i < count($_FILES); $i++) {
 
-        try {
-            for ($i = 0; $i < count($_FILES); $i++) {
+            if ($_FILES['file' . $i]['error'] === UPLOAD_ERR_OK) {
                 move_uploaded_file($_FILES['file' . $i]['tmp_name'], $directorio . $_FILES['file' . $i]['name']);
+            } else {
+                ++$contador_errores;
             }
 
-        } catch (Exception $exception) {
-            echo $exception;
         }
 
-        echo 'enviado!';
-    } else {
-
-        echo "Hay algún tipo de error";
+    } catch (Exception $exception) {
+        echo $exception;
     }
+
+    if ($contador_errores === 0) {
+        echo "Se han subido y movido los ficheros con éxito!";
+    } else {
+        echo "Se han producido " . $contador_errores . " errores";
+    }
+} else {
+
+    echo "Hay algún tipo de error con el SUBMIT";
 }
 ?>
 </body>
