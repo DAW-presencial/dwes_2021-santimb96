@@ -31,7 +31,6 @@ class User
                 return "error!";
             }
 
-
         } catch (PDOException $exception) {
             return "Connection error: " . $exception->getMessage();
         }
