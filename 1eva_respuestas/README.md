@@ -45,3 +45,17 @@ Y este sería el resultado esperado con los ficheros subidos y el output que se 
 
 ![img_1.png](img_1.png)
 
+## EJERCICIO 6
+
+El dominio a visitar para encontrar la lista de ejercicios subidos al remoto es:
+
+[http://smartinez.ifc33b.cifpfbmoll.eu/dwes_2021-santimb96/1eva_respuestas/](http://smartinez.ifc33b.cifpfbmoll.eu/dwes_2021-santimb96/1eva_respuestas/)
+
+o bien con el nombre de noip:
+
+[http://smartinezbota.ddns.net/dwes_2021-santimb96/1eva_respuestas/](http://smartinezbota.ddns.net/dwes_2021-santimb96/1eva_respuestas/)
+
+En el repositorio 1eva_respuestas se encuentran los ficheros ejercicio4.php y ejercicio5.php que corresponden a las preguntas 4 y 5
+del examen. Las imágenes que hay en la raíz de esta carpeta corresponden a las capturas de pantalla aportadas en el README.md. Por
+último, el directorio que hay dentro, ficheros/, se almacenan las imágenes que se han probado para el ejercicio5.php en el apartado de ficheros.
+
