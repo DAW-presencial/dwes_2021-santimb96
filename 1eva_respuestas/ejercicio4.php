@@ -44,7 +44,7 @@ class Escuderia
  */
 class Piloto extends Escuderia
 {
-    public $nombre;
+    protected $nombre;
 
     /**
      * creamos el constructor y añadimos la propiedad del padre $marca
@@ -58,7 +58,7 @@ class Piloto extends Escuderia
 }
 
 $escuderia = new Escuderia('alpine');
-$escuderia->color='azul';
+$escuderia->color = 'azul';
 
 /**
  * imprimimos la propiedad que exsite y la que hemos establecido
@@ -69,9 +69,7 @@ echo "Color: " . $escuderia->color . "<br>"; //color establecido
 
 $piloto = new Piloto('ferrari', 'carlos sainz');
 
-$piloto->numero_piloto= 55;
-
-//$piloto->__set('numero_piloto', 55);
+$piloto->numero_piloto = 55;
 
 echo "<h2>Clase Piloto</h2><br>";
 echo "Marca: " . $piloto->marca . "<br>"; //obtenemos marca del hijo
