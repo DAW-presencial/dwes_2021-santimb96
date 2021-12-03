@@ -40,7 +40,6 @@ primer_fichero y segundo_fichero y se hacen dos `if else` para controlar que est
 ![img_3.png](img_3.png)
 
 
-
 Y este sería el resultado esperado con los ficheros subidos y el output que se solicita:
 
 ![img_1.png](img_1.png)

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>EJERCICIO 4</title>
 </head>
 <body>
 <?php
@@ -58,7 +58,7 @@ class Piloto extends Escuderia
 }
 
 $escuderia = new Escuderia('alpine');
-$escuderia->color = 'azul';
+$escuderia->color = 'azul'; //creamos propiedad color (no está en padre), y añadimos "azul"
 
 /**
  * imprimimos la propiedad que exsite y la que hemos establecido
@@ -69,12 +69,18 @@ echo "Color: " . $escuderia->color . "<br>"; //color establecido
 
 $piloto = new Piloto('ferrari', 'carlos sainz');
 
-$piloto->numero_piloto = 55;
+$piloto->numero_piloto = 55; //creamos numero_piloto en hijo y le añadimos 55
 
 echo "<h2>Clase Piloto</h2><br>";
 echo "Marca: " . $piloto->marca . "<br>"; //obtenemos marca del hijo
 echo "Piloto: " . $piloto->nombre . "<br>"; //obtenemos nombre piloto
 echo "Número: " . $piloto->numero_piloto . "<br>"; //obtenemos numero piloto
+
+/**
+ * de esta manera comprobamos que podemos acceder al __set() y __get() del padre para establecer las
+ * propiedades del hijo
+ */
 ?>
+
 </body>
 </html>
