@@ -28,7 +28,7 @@ echo $padre->getter."<br>";
 
 $hijo = new Hijo();
 $hijo->setter_hijo = "Santi";
-echo $hijo->getter_hijo."<br>";
+echo $hijo->setter_hijo."<br>";
 ?>
 </body>
 </html>

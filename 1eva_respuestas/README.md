@@ -32,14 +32,14 @@ que en este caso, la visibilidad no afecta para nada aunque se recomiende que se
 ##EJERCICIO 5
 
 En este ejercicio he creado los campos requeridos para el nombre, apellidos, un tipo "date"
-y otros dos campos para la subida de ficheros los cuales tienen un identificador y name peculiares por algo que detallaré ahora.
+y otros dos campos para la subida de ficheros los cuales tienen un identificador y name.
 
-En el control de los ficheros, en este caso hay dos inputs los cuales su name son file0 y file1 respectivamente.
-Esto está hecho a propósito porque tengo un control el cual mediante un for podría añadir más inputs siguiendo
-un orden numérico consecuente (file0, file1, file2, file3...) y ese for recoge el campo del nombre `$_FILES['file'. $i]`,
-de manera que cada iteración recorrerá un fichero diferente si este sigue esta nomenclatura:
+El control de los ficheros que se suben y se mueven al directorio ficheros/ se hace por fichero: en este caso, hay dos inputs los cuales se llaman
+primer_fichero y segundo_fichero y se hacen dos `if else` para controlar que estos dos se suben correctamente:
 
-![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+
+
 
 Y este sería el resultado esperado con los ficheros subidos y el output que se solicita:
 

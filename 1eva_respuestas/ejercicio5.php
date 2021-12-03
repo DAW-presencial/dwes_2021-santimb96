@@ -18,10 +18,10 @@
     <input type="date" id="fecha" name="fecha">
 
     <label for="file0">Fichero 1:</label>
-    <input type="file" name="file0"  id="file0" placeholder="fichero"/>
+    <input type="file" name="primer_fichero"  id="file0" placeholder="fichero"/>
 
     <label for="file1">Fichero 2:</label>
-    <input type="file" name="file1"  id="file1" placeholder="fichero"/>
+    <input type="file" name="segundo_fichero"  id="file1" placeholder="fichero"/>
 
     <input type="submit" name="submit" value="Enviar!">
 </form>
@@ -33,10 +33,39 @@ if(isset($_POST['submit'])){
     $apellidos = filter_input(INPUT_POST, 'apellidos', FILTER_SANITIZE_STRING);
     $fecha = $_POST['fecha'];
 
+    //$directorio = 'ficheros/';
 
-    $directorio = 'ficheros/';
+    /**
+     * valoramos ficheros
+     */
+    try{
+        /**
+         * valoramos primer fichero del input
+         */
+        if ($_FILES['primer_fichero']['error'] === UPLOAD_ERR_OK) {
+            move_uploaded_file($_FILES['primer_fichero']['tmp_name'], __DIR__ . $_FILES['primer_fichero']['name']);
+        } else {
+            echo "error!";
+        }
 
-    try {
+        /**
+         * valoramos segundo fichero del input
+         */
+        if ($_FILES['segundo_fichero']['error'] === UPLOAD_ERR_OK) {
+            move_uploaded_file($_FILES['segundo_fichero']['tmp_name'], __DIR__ . $_FILES['segundo_fichero']['name']);
+        } else {
+            echo "error!";
+        }
+
+    } catch (Exception $exception){
+        echo $exception;
+    }
+
+    /**
+     * con la manera comentada de abajo, si llamamos file0, file1, file2..., mediante un for podemos añadir todos
+     * los ficheros de los inputs que se llamen así de manera consecutiva
+     */
+   /* try {
         for ($i = 0; $i < count($_FILES); $i++) {
 
             if ($_FILES['file' . $i]['error'] === UPLOAD_ERR_OK) {
@@ -49,11 +78,11 @@ if(isset($_POST['submit'])){
 
     } catch (Exception $exception) {
         echo $exception;
-    }
+    }*/
 
     echo "<table border='solid'><tr><td>$nombre</td><td>$apellidos</td><td>$fecha</td>
-    <td>".$_FILES['file0']['name']."</td><td>".$_FILES['file0']['size']."</td>
-    <td>".$_FILES['file1']['name']."</td><td>".$_FILES['file1']['size']."</td></tr></table>";
+    <td>".$_FILES['primer_fichero']['name']."</td><td>".$_FILES['primer_fichero']['size']."</td>
+    <td>".$_FILES['segundo_fichero']['name']."</td><td>".$_FILES['segundo_fichero']['size']."</td></tr></table>";
 
 }
 ?>
