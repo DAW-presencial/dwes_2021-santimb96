@@ -3,11 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>CRUD INDEX</title>
+    <style>
+        *{
+            font-family: monospace, sans-serif;
+            background: black;
+            color: white;
+        }
+        .form {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 5% 5%;
+            align-content: center;
+            gap: 2vh;
+            font-weight: bold;
+            font-size: 3vh;
+        }
+        .titulo-agenda {
+            text-align: center;
+        }
+
+        .div {
+            border: 2px white solid;
+        }
+
+        .boton {
+            background: grey;
+            color: black;
+            border-radius: 5px;
+            border: 2px solid white;
+            width: 20vh;
+            height: 5vh;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .boton:hover {
+            color: white;
+            background: black;
+        }
+
+        input {
+            background: white;
+            color: black;
+            transition: 0.3s;
+        }
+
+        input:hover{
+            background: black;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
-<div>
+<div class="div">
 
-    <form action="index.php" method="post">
+    <h1 class="titulo-agenda">AGENDA BASE DE DATOS</h1>
+
+    <form class="form" action="helper.php" method="post">
 
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" name="nombre">
@@ -21,52 +75,13 @@
         <label for="tlf">Teléfono</label>
         <input type="text" id="tlf" name="tlf">
 
-        <input type="submit" name="registrar" value="Registrar">
-        <input type="submit" name="mostrar" value="Mostrar">
-        <input type="submit" name="actualizar" value="Actualizar">
-        <input type="submit" name="borrar" value="Borrar">
+        <input class="boton" type="submit" name="registrar" value="Registrar">
+        <input class="boton" type="submit" name="mostrar" value="Mostrar">
+        <input class="boton" type="submit" name="actualizar" value="Actualizar">
+        <input class="boton" type="submit" name="borrar" value="Borrar">
 
     </form>
 
 </div>
-<?php
-include_once('classes/Contactoclass.php');
-include_once('db/Databaseclass.php');
-
-$db = new Databaseclass();
-
-
-if (isset($_POST['nombre']) && isset($_POST['primer_apellido']) && isset($_POST['segundo_apellido']) && $_POST['tlf']) {
-
-    $nombre = $_POST['nombre'];
-    $primer_apellido = $_POST['primer_apellido'];
-    $segundo_apellido = $_POST['segundo_apellido'];
-    $tlf = $_POST['tlf'];
-
-    $contacto = new Contactoclass($nombre, $primer_apellido, $segundo_apellido, $tlf, $db->getConection());
-
-    if (isset($_POST['registrar'])) {
-
-        echo $contacto->store();
-    }
-
-    else if (isset($_POST['actualizar'])) {
-
-        echo $contacto->update();
-
-    } else if (isset($_POST['borrar'])) {
-
-       echo $contacto->delete();
-
-    }
-}
-
-if (isset($_POST['mostrar'])) {
-
-    echo Contactoclass::show();
-}
-
-
-?>
 </body>
 </html>

@@ -49,11 +49,11 @@ class Contactoclass
         $sql_select = "select * from contacto";
 
         try {
-            $output = "<table border='solid'><tr>";
+            $output = "<table><tr>";
             $output .= "<th>Nombre</th><th>Primer apellido</th><th>Segundo apellido</th><th>TLF</th></tr>";
-            if($conn->query($sql_select)->fetchColumn()){
+            if ($conn->query($sql_select)->fetchColumn()) {
                 $result = $conn->query($sql_select);
-                foreach ($result as $contacto){
+                foreach ($result as $contacto) {
                     //$resultado_query.= $contacto['nombre'].', '.$contacto['primer_apellido']. ', '.$contacto['segundo_apellido']. ', '.$contacto['tlf'];
                     $output .= "<tr>";
                     $output .= '<th>' . $contacto['nombre'] . '</th>';
@@ -86,7 +86,8 @@ class Contactoclass
 
     }
 
-    public function update(){
+    public function update()
+    {
         $conn = $this->db;
 
         $sql_update = "update contacto set nombre = '$this->nombre', primer_apellido = '$this->primer_apellido', 
