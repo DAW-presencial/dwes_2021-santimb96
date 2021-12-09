@@ -69,7 +69,12 @@ if (isset($_POST['nombre']) && isset($_POST['primer_apellido']) && isset($_POST[
     $contacto = new Contactoclass($nombre, $primer_apellido, $segundo_apellido, $tlf, $db->getConection());
 
     if (isset($_POST['registrar'])) {
-        echo $contacto->store();
+        if(strlen($tlf) != 9){
+            echo "Formato de número no correcto!";
+        } else {
+            echo $contacto->store();
+        }
+
     } else if (isset($_POST['actualizar'])) {
         echo $contacto->update();
 
