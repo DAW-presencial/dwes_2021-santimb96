@@ -51,10 +51,12 @@
 <body>
 <?php
 
-require_once('classes/Contactoclass.php');
-require_once('db/Databaseclass.php');
+include_once ('db/Databaseclass.php');
+include_once ('classes/Contactoclass.php');
+
 
 $db = new Databaseclass();
+
 
 
 if (isset($_POST['nombre']) && isset($_POST['primer_apellido']) && isset($_POST['segundo_apellido']) && $_POST['tlf']) {
