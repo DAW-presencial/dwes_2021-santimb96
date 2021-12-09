@@ -25,6 +25,10 @@ class Contactoclass
         $this->db = $db;
     }
 
+    /**
+     * almacenamos la información en la base de datos
+     * @return string
+     */
     public function store(): string
     {
         $conn = $this->db;
@@ -39,6 +43,10 @@ class Contactoclass
         }
     }
 
+    /**
+     * mostramos todos los contactos que hay en la base de datos
+     * @return string
+     */
     public static function show(): string
     {
 
@@ -71,6 +79,10 @@ class Contactoclass
         }
     }
 
+    /**
+     * borramos el contacto que cumpla con una serie de parámetros
+     * @return string
+     */
     public function delete(): string
     {
         $conn = $this->db;
@@ -86,6 +98,10 @@ class Contactoclass
 
     }
 
+    /**
+     * actualizamos el contacto que cumpla con una serie de parámetros
+     * @return string
+     */
     public function update(): string
     {
         $conn = $this->db;
@@ -99,7 +115,7 @@ class Contactoclass
                        and segundo_apellido = '$this->segundo_apellido';";
 
         try {
-            if($conn->query($sql_exists)->fetch()){
+            if ($conn->query($sql_exists)->fetch()) {
                 $conn->exec($sql_update);
                 return "Contacto actualizado con éxito!";
             } else {
