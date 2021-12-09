@@ -50,14 +50,18 @@
 </head>
 <body>
 <?php
-
+/**
+ * importamos clase de contcatos y de base de datos
+ */
 include_once ('db/Databaseclass.php');
 include_once ('classes/Contactoclass.php');
 
 
 $db = new Databaseclass();
 
-
+/**
+ * comprobamos que los campos han sido posteados
+ */
 
 if (isset($_POST['nombre']) && isset($_POST['primer_apellido']) && isset($_POST['segundo_apellido']) && $_POST['tlf']) {
 
@@ -68,6 +72,9 @@ if (isset($_POST['nombre']) && isset($_POST['primer_apellido']) && isset($_POST[
 
     $contacto = new Contactoclass($nombre, $primer_apellido, $segundo_apellido, $tlf, $db->getConection());
 
+    /**
+     * a la hora de regsitrar miramos si el número es igual a 9 para realizar registro
+     */
     if (isset($_POST['registrar'])) {
         if(strlen($tlf) != 9){
             echo "Formato de número no correcto!";
@@ -82,7 +89,9 @@ if (isset($_POST['nombre']) && isset($_POST['primer_apellido']) && isset($_POST[
         echo $contacto->delete();
     }
 }
-
+/**
+ * para mostrar los datos lo hacemos mediante singleton y referencia método estático
+ */
 if (isset($_POST['mostrar'])) {
     echo Contactoclass::show();
 }
