@@ -91,7 +91,9 @@ class Contactoclass
         $conn = $this->db;
 
         $sql_update = "update contacto set nombre = '$this->nombre', primer_apellido = '$this->primer_apellido', 
-                    segundo_apellido = '$this->segundo_apellido', tlf='$this->tlf' where tlf='$this->tlf';";
+                    segundo_apellido = '$this->segundo_apellido', tlf = '$this->tlf'
+                    where nombre = '$this->nombre' and primer_apellido = '$this->primer_apellido'
+                    and segundo_apellido = '$this->segundo_apellido';";
 
         $sql_exists = "select count(*) from contacto where nombre = '$this->nombre' and primer_apellido = '$this->primer_apellido'
                        and segundo_apellido = '$this->segundo_apellido';";
