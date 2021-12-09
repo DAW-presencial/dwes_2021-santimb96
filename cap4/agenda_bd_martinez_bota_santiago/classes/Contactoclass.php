@@ -86,16 +86,23 @@ class Contactoclass
 
     }
 
-    public function update()
+    public function update(): string
     {
         $conn = $this->db;
 
         $sql_update = "update contacto set nombre = '$this->nombre', primer_apellido = '$this->primer_apellido', 
                     segundo_apellido = '$this->segundo_apellido', tlf='$this->tlf' where tlf='$this->tlf';";
 
+        $sql_exists = "select * from contacto where nombre='$this->nombre' and primer_apellido='$this->primer_apellido'
+                       and segundo_apellido='$this->segundo_apellido'";
+
         try {
-            $conn->exec($sql_update);
-            return "Contacto actualizado con éxito!";
+            if($conn->query($sql_exists)->fetchColumn() > 0){
+                $conn->exec($sql_update);
+                return "Contacto actualizado con éxito!";
+            } else {
+                return "No existe el dato que tratas de insertar!";
+            }
         } catch (PDOException $PDOException) {
             return "Connection error: " . $PDOException->getMessage();
         }
