@@ -97,7 +97,7 @@ class Contactoclass
                        and segundo_apellido = '$this->segundo_apellido';";
 
         try {
-            if($conn->exec($sql_exists)->fetchColumn() > 0){
+            if($conn->query($sql_exists)->fetch()){
                 $conn->exec($sql_update);
                 return "Contacto actualizado con éxito!";
             } else {
