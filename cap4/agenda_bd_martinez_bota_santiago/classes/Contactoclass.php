@@ -46,7 +46,7 @@ class Contactoclass
 
         $conn = $db->getConection();
 
-        $sql_select = "select * from contacto";
+        $sql_select = "select nombre, primer_apellido, segundo_apellido, tlf from contacto";
 
         try {
             $output = "<table><tr>";
