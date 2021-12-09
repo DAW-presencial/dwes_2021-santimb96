@@ -9,7 +9,7 @@ class Databaseclass
 
     public function __construct(){
     }
-
+//
     public function getConection(): PDO|string
     {
         try {
