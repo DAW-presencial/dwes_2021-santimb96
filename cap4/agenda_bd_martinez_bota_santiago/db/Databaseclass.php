@@ -11,7 +11,7 @@ class Databaseclass
     public function __construct(){
     }
 
-    public function getConection(): PDO|string
+    public function getConection()
     {
         try {
             $conn = new PDO("pgsql:host=".$this->host.";port=".$this->puerto.";dbname=".$this->dbname, $this->username, $this->password);
