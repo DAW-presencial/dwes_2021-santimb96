@@ -33,10 +33,15 @@ class Contactoclass
     {
         $conn = $this->db;
 
-        $sql_insert = "insert into contacto(nombre, primer_apellido, segundo_apellido, tlf) values ('$this->nombre','$this->primer_apellido', '$this->segundo_apellido','$this->tlf');";
+        $sql_insert = $conn->prepare("insert into contacto(nombre, primer_apellido, segundo_apellido, tlf) values (:nombre,:apellido1, :apellido2,:tlf);");
 
         try {
-            $conn->exec($sql_insert);
+            $sql_insert->execute([
+                ':nombre' => $this->nombre,
+                ':apellido1' => $this->primer_apellido,
+                ':apellido2' => $this->segundo_apellido,
+                ':telefono' => $this->tlf,
+            ]);
             return "Contacto registrado con éxito!";
         } catch (PDOException $PDOException) {
             return "Connection error: " . $PDOException->getMessage();
@@ -87,10 +92,10 @@ class Contactoclass
     {
         $conn = $this->db;
 
-        $sql_del = "delete from contacto where tlf='$this->tlf';";
+        $sql_del = $conn->prepare("delete from contacto where tlf=:tlf;");
 
         try {
-            $conn->exec($sql_del);
+            $sql_del->execute([':tlf'=>$this->tlf]);
             return "Contacto eliminado con éxito!";
         } catch (PDOException $PDOException) {
             return "Connection error: " . $PDOException->getMessage();
