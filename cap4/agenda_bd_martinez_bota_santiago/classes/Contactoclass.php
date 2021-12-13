@@ -106,17 +106,22 @@ class Contactoclass
     {
         $conn = $this->db;
 
-        $sql_update = "update contacto set nombre = '$this->nombre', primer_apellido = '$this->primer_apellido', 
-                    segundo_apellido = '$this->segundo_apellido', tlf = '$this->tlf'
-                    where nombre = '$this->nombre' and primer_apellido = '$this->primer_apellido'
-                    and segundo_apellido = '$this->segundo_apellido';";
+        $sql_update = $conn->prepare("update contacto set nombre = :nombre, primer_apellido = :apellido1, 
+                    segundo_apellido = :apellido2, tlf = :telefono
+                    where nombre = :nombre and primer_apellido = :apellido1
+                    and segundo_apellido = :apellido2 ;");
 
         $sql_exists = "select count(*) from contacto where nombre = '$this->nombre' and primer_apellido = '$this->primer_apellido'
                        and segundo_apellido = '$this->segundo_apellido';";
 
         try {
             if ($conn->query($sql_exists)->fetch()) {
-                $conn->exec($sql_update);
+                $sql_update->execute([
+                    ':nombre' => $this->nombre,
+                    ':apellido1' => $this->primer_apellido,
+                    ':apellido2' => $this->segundo_apellido,
+                    ':telefono' => $this->tlf,
+                ]);
                 return "Contacto actualizado con éxito!";
             } else {
                 return "No existe el dato que tratas de insertar!";
