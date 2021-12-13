@@ -92,10 +92,10 @@ class Contactoclass
     {
         $conn = $this->db;
 
-        $sql_del = $conn->prepare("delete from contacto where tlf=:tlf;");
+        $sql_del = $conn->prepare("delete from contacto where tlf=:tlf and nombre=:nombre;");
 
         try {
-            $sql_del->execute([':tlf'=>$this->tlf]);
+            $sql_del->execute([':tlf'=>$this->tlf, ':nombre'=>$this->nombre]);
             return "Contacto eliminado con éxito!";
         } catch (PDOException $PDOException) {
             return "Connection error: " . $PDOException->getMessage();
