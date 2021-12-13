@@ -33,7 +33,7 @@ class Contactoclass
     {
         $conn = $this->db;
 
-        $sql_insert = $conn->prepare("insert into contacto(nombre, primer_apellido, segundo_apellido, tlf) values (:nombre,:apellido1, :apellido2,:tlf);");
+        $sql_insert = $conn->prepare("insert into contacto(nombre, primer_apellido, segundo_apellido, tlf) values (:nombre,:apellido1, :apellido2,:telefono);");
 
         try {
             $sql_insert->execute([
